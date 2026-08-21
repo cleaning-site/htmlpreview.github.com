@@ -569,4 +569,8 @@
     <div style="display:flex; gap:10px;">
         <button class="fp-btn" onclick="phoneCall()">📞 Заказать звонок</button>
         <button class="fp-btn"
-
+<form action="mailto:email@example.com" method="post">
+  <input type="text" placeholder="Ваше имя" required>
+  <input type="tel" placeholder="Телефон" required>
+  <button type="submit">Заказать уборку</button>
+</form>
