@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>ЧИСТОТА ПРО — клининг премиум</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,'Inter','Segoe UI',system-ui,sans-serif; }
+    body { background:#f7f9fb; color:#0f2733; padding-bottom:90px; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+    /* HERO */
+    .hero {
+        background:linear-gradient(160deg,#08222e 0%,#0d3546 100%);
+        padding:56px 22px 48px;
+        text-align:center;
+        color:#fff;
+        position:relative;
+    }
+    .hero::after {
+        content:'';
+        position:absolute;
+        left:0; right:0; bottom:0;
+        height:1px;
+        background:linear-gradient(90deg,transparent,rgba(245,166,35,0.4),transparent);
+    }
+    .hero h1 {
+        font-size:2.6rem;
+        font-weight:800;
+        letter-spacing:-0.02em;
+        line-height:1.1;
+    }
+    .hero h1 span {
+        color:#f5a623;
+    }
+    .hero p {
+        font-size:1.05rem;
+        margin-top:14px;
+        color:#a8c4d0;
+        font-weight:400;
+        letter-spacing:0.01em;
+    }
+    .hero-badges {
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:8px;
+        margin-top:24px;
+    }
+    .hero-badge {
+        background:rgba(255,255,255,0.06);
+        border:1px solid rgba(255,255,255,0.08);
+        padding:7px 16px;
+        border-radius:30px;
+        font-size:0.82rem;
+        font-weight:500;
+        color:#c8dce4;
+    }
+
+    /* PROMO BANNER */
+    .promo {
+        background:linear-gradient(135deg,#f5a623,#e0911a);
+        color:#08222e;
+        padding:22px 20px;
+        text-align:center;
+        font-weight:700;
+        font-size:1.15rem;
+        letter-spacing:-0.01em;
+        box-shadow:0 8px 30px rgba(245,166,35,0.25);
+    }
+    .promo strong { font-size:1.35rem; display:block; margin-bottom:2px; }
+
+    .container { max-width:1200px; margin:0 auto; padding:0 18px; }
+
+    /* СЧЁТЧИКИ */
+    .stats {
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:1px;
+        background:#e2ebf0;
+        margin:24px 0;
+        border-radius:16px;
+        overflow:hidden;
+    }
+    .stat {
+        background:#fff;
+        padding:22px 10px;
+        text-align:center;
+    }
+    .stat b {
+        display:block;
+        font-size:1.8rem;
+        font-weight:800;
+        color:#0d4a5a;
+        letter-spacing:-0.02em;
+    }
+    .stat span {
+        font-size:0.8rem;
+        color:#7c95a2;
+        font-weight:500;
+        margin-top:2px;
+        display:block;
+    }
+
+    /* СЕКЦИИ */
+    .section-title {
+        font-size:1.5rem;
+        font-weight:800;
+        letter-spacing:-0.02em;
+        margin:38px 0 16px;
+        color:#08222e;
+    }
+    .section-sub {
+        font-size:0.95rem;
+        color:#7c95a2;
+        margin:-10px 0 16px;
+        font-weight:400;
+    }
+
+    /* КАРТОЧКИ УБОРКИ */
+    .cards {
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+        gap:14px;
+    }
+    .card {
+        background:#fff;
+        border:1px solid #e2ebf0;
+        border-radius:18px;
+        padding:24px 20px;
+        transition:0.2s;
+        position:relative;
+    }
+    .card:hover {
+        border-color:#c5d8e0;
+        box-shadow:0 8px 30px rgba(0,40,60,0.06);
+        transform:translateY(-2px);
+    }
+    .card-head {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:14px;
+    }
+    .card-head h3 {
+        font-size:1.1rem;
+        font-weight:700;
+        color:#08222e;
+    }
+    .card-head .area {
+        font-size:0.8rem;
+        color:#7c95a2;
+        background:#f0f5f8;
+        padding:4px 10px;
+        border-radius:20px;
+        font-weight:500;
+    }
+    .card-price {
+        font-size:2rem;
+        font-weight:800;
+        color:#0d4a5a;
+        letter-spacing:-0.03em;
+        margin-bottom:16px;
+    }
+    .card-features {
+        list-style:none;
+        margin-bottom:18px;
+    }
+    .card-features li {
+        font-size:0.88rem;
+        color:#5c7480;
+        padding:5px 0 5px 20px;
+        position:relative;
+    }
+    .card-features li::before {
+        content:'';
+        position:absolute;
+        left:0;
+        top:11px;
+        width:6px;
+        height:6px;
+        border-radius:50%;
+        background:#22a6b3;
+    }
+    .btn-primary {
+        display:block;
+        width:100%;
+        padding:14px;
+        border:none;
+        border-radius:12px;
+        background:#0d4a5a;
+        color:#fff;
+        font-size:0.95rem;
+        font-weight:700;
+        cursor:pointer;
+        transition:0.2s;
+        letter-spacing:0.01em;
+        touch-action:manipulation;
+    }
+    .btn-primary:hover { background:#0a3a47; }
+    .btn-primary:active { transform:scale(0.98); }
+
+    /* ПОДПИСКИ */
+    .subs {
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+        gap:12px;
+    }
+    .sub {
+        background:#fff;
+        border:1px solid #e2ebf0;
+        border-radius:16px;
+        padding:22px 16px;
+        text-align:center;
+        transition:0.2s;
+    }
+    .sub.best {
+        border:2px solid #f5a623;
+        background:#fffdf7;
+    }
+    .sub .period {
+        font-size:0.9rem;
+        font-weight:700;
+        color:#08222e;
+        margin-bottom:8px;
+    }
+    .sub .price {
+        font-size:1.8rem;
+        font-weight:800;
+        color:#0d4a5a;
+        letter-spacing:-0.02em;
+    }
+    .sub .desc {
+        font-size:0.78rem;
+        color:#7c95a2;
+        margin:6px 0 14px;
+        line-height:1.4;
+    }
+    .sub .save {
+        font-size:0.72rem;
+        font-weight:600;
+        color:#22a6b3;
+        margin-bottom:12px;
+    }
+    .sub .best-tag {
+        position:absolute;
+    }
+    .btn-sub {
+        width:100%;
+        padding:10px;
+        border:none;
+        border-radius:10px;
+        background:#eef5f8;
+        color:#0d4a5a;
+        font-size:0.82rem;
+        font-weight:700;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .btn-sub:hover { background:#dceaf0; }
+    .sub.best .btn-sub {
+        background:#f5a623;
+        color:#08222e;
+    }
+
+    /* ГАЛЕРЕЯ */
+    .gallery {
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:8px;
+    }
+    .gallery div {
+        aspect-ratio:1;
+        background:linear-gradient(145deg,#eaf2f6,#dbe9f0);
+        border-radius:12px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:0.75rem;
+        color:#7c95a2;
+        font-weight:500;
+    }
+
+    /* ОТЗЫВЫ */
+    .reviews {
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:12px;
+    }
+    .review {
+        background:#fff;
+        border:1px solid #e2ebf0;
+        border-radius:14px;
+        padding:18px;
+        font-size:0.9rem;
+        color:#5c7480;
+        line-height:1.5;
+    }
+    .review .author {
+        font-size:0.82rem;
+        font-weight:700;
+        color:#08222e;
+        margin-top:10px;
+    }
+
+    /* FAQ */
+    .faq {
+        background:#fff;
+        border:1px solid #e2ebf0;
+        border-radius:14px;
+        padding:16px 20px;
+        margin-bottom:8px;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .faq .q { font-weight:700; font-size:0.95rem; color:#08222e; }
+    .faq .a {
+        display:none;
+        font-size:0.88rem;
+        color:#5c7480;
+        margin-top:10px;
+        padding-top:10px;
+        border-top:1px solid #eaf2f6;
+        line-height:1.5;
+    }
+    .faq.open .a { display:block; }
+
+    /* ФОРМА */
+    .form {
+        background:#fff;
+        border:1px solid #e2ebf0;
+        border-radius:18px;
+        padding:28px 22px;
+        max-width:520px;
+        margin:0 auto;
+    }
+    .form input, .form textarea {
+        width:100%;
+        padding:14px 16px;
+        border:1px solid #dceaf0;
+        border-radius:12px;
+        font-size:0.95rem;
+        margin-bottom:12px;
+        background:#f9fbfc;
+        transition:0.2s;
+        font-family:inherit;
+    }
+    .form input:focus, .form textarea:focus {
+        border-color:#22a6b3;
+        background:#fff;
+        outline:none;
+    }
+    .form textarea {
+        min-height:80px;
+        resize:vertical;
+    }
+    .form .btn-submit {
+        width:100%;
+        padding:16px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#f5a623,#e0911a);
+        color:#08222e;
+        font-size:1.05rem;
+        font-weight:800;
+        cursor:pointer;
+        letter-spacing:0.01em;
+        box-shadow:0 6px 20px rgba(245,166,35,0.3);
+    }
+    .form .btn-submit:active { transform:scale(0.98); }
+
+    /* ПОДВАЛ */
+    .footer {
+        text-align:center;
+        padding:36px 20px 20px;
+        color:#9ab0bc;
+        font-size:0.82rem;
+    }
+
+    /* ПЛАВАЮЩАЯ КНОПКА */
+    .float-cta {
+        position:fixed;
+        bottom:20px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:999;
+        background:linear-gradient(135deg,#f5a623,#e0911a);
+        color:#08222e;
+        padding:15px 32px;
+        border-radius:50px;
+        font-weight:800;
+        font-size:1rem;
+        border:none;
+        cursor:pointer;
+        box-shadow:0 10px 30px rgba(245,166,35,0.4);
+        white-space:nowrap;
+    }
+    .float-cta:active { transform:translateX(-50%) scale(0.96); }
+
+    @media (max-width:600px) {
+        .hero h1 { font-size:2rem; }
+        .hero p { font-size:0.95rem; }
+        .gallery { grid-template-columns:repeat(3,1fr); }
+        .stat b { font-size:1.5rem; }
+        .section-title { font-size:1.3rem; }
+    }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>ЧИСТОТА <span>ПРО</span></h1>
+    <p>Профессиональный клининг с выездом за 1 час</p>
+    <div class="hero-badges">
+        <div class="hero-badge">⭐ 4.9 / 5</div>
+        <div class="hero-badge">500+ клиентов</div>
+        <div class="hero-badge">Эко-средства</div>
+    </div>
+</div>
+
+<!-- ПРОМО -->
+<div class="promo">
+    🎁 1000 ₽ на первую уборку
+</div>
+
+<div class="container">
+
+    <!-- СТАТИСТИКА -->
+    <div class="stats">
+        <div class="stat"><b id="c1">0</b><span>Клиентов</span></div>
+        <div class="stat"><b id="c2">0</b><span>Уборок</span></div>
+        <div class="stat"><b id="c3">0</b><span>Наград</span></div>
+    </div>
+
+    <!-- РАЗОВЫЕ УБОРКИ -->
+    <h2 class="section-title">Разовая уборка</h2>
+    <p class="section-sub">Выберите площадь — цена уже с учётом скидки 1000 ₽</p>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-head"><h3>Студия</h3><span class="area">до 28 м²</span></div>
+            <div class="card-price">2 100 ₽</div>
+            <ul class="card-features">
+                <li>Экспресс-уборка</li>
+                <li>Санузел и окно</li>
+                <li>Вынос мусора</li>
+            </ul>
+            <button class="btn-primary" onclick="order('Студия', 2100)">Заказать</button>
+        </div>
+
+        <div class="card">
+            <div class="card-head"><h3>1-комнатная</h3><span class="area">до 40 м²</span></div>
+            <div class="card-price">3 200 ₽</div>
+            <ul class="card-features">
+                <li>Генеральная уборка</li>
+                <li>Окна и сантехника</li>
+                <li>Вывоз мусора</li>
+            </ul>
+            <button class="btn-primary" onclick="order('1-комнатная', 3200)">Заказать</button>
+        </div>
+
+        <div class="card">
+            <div class="card-head"><h3>2-комнатная</h3><span class="area">до 65 м²</span></div>
+            <div class="card-price">4 500 ₽</div>
+            <ul class="card-features">
+                <li>Генеральная уборка</li>
+                <li>Кухня и санузлы</li>
+                <li>Полировка мебели</li>
+            </ul>
+            <button class="btn-primary" onclick="order('2-комнатная', 4500)">Заказать</button>
+        </div>
+
+        <div class="card">
+            <div class="card-head"><h3>3-комнатная</h3><span class="area">до 90 м²</span></div>
+            <div class="card-price">6 100 ₽</div>
+            <ul class="card-features">
+                <li>Глубокая уборка</li>
+                <li>Мойка окон (3 блока)</li>
+                <li>Дезинфекция</li>
+            </ul>
+            <button class="btn-primary" onclick="order('3-комнатная', 6100)">Заказать</button>
+        </div>
+
+        <div class="card">
+            <div class="card-head"><h3>4+ комнат</h3><span class="area">от 100 м²</span></div>
+            <div class="card-price">8 300 ₽</div>
+            <ul class="card-features">
+                <li>Клининг «Люкс»</li>
+                <li>Химчистка мебели</li>
+                <li>Обработка паром</li>
+            </ul>
+            <button class="btn-primary" onclick="order('4+ комнат', 8300)">Заказать</button>
+        </div>
+    </div>
+
+    <!-- ПОДПИСКИ -->
+    <h2 class="section-title">Подписка на уборку</h2>
+    <p class="section-sub">Раз в неделю — идеальная чистота. Экономия до 30%</p>
+
+    <div class="subs">
+        <div class="sub">
+            <div class="period">1 месяц</div>
+            <div class="price">1 990 ₽</div>
+            <div class="desc">4 визита<br>раз в неделю</div>
+            <div class="save">−20%</div>
+            <button class="btn-sub" onclick="order('Подписка 1 мес', 1990)">Выбрать</button>
+        </div>
+        <div class="sub">
+            <div class="period">2 месяца</div>
+            <div class="price">3 790 ₽</div>
+            <div class="desc">8 визитов<br>раз в неделю</div>
+            <div class="save">−24%</div>
+            <button class="btn-sub" onclick="order('Подписка 2 мес', 3790)">Выбрать</button>
+        </div>
+        <div class="sub best">
+            <div class="period">3 месяца</div>
+            <div class="price">5 490 ₽</div>
+            <div class="desc">12 визитов<br>раз в неделю</div>
+            <div class="save">⭐ ХИТ −27%</div>
+            <button class="btn-sub" onclick="order('Подписка 3 мес', 5490)">Выбрать</button>
+        </div>
+        <div class="sub">
+            <div class="period">6 месяцев</div>
+            <div class="price">10 290 ₽</div>
+            <div class="desc">24 визита<br>раз в неделю</div>
+            <div class="save">−30%</div>
+            <button class="btn-sub" onclick="order('Подписка 6 мес', 10290)">Выбрать</button>
+        </div>
+        <div class="sub">
+            <div class="period">12 месяцев</div>
+            <div class="price">18 990 ₽</div>
+            <div class="desc">48 визитов<br>раз в неделю</div>
+            <div class="save">🔥 −32%</div>
+            <button class="btn-sub" onclick="order('Подписка 12 мес', 18990)">Выбрать</button>
+        </div>
+    </div>
+
+    <!-- ТАБЛИЦА ЦЕН -->
+    <h2 class="section-title">Цены</h2>
+    <div style="background:#fff; border:1px solid #e2ebf0; border-radius:14px; overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:#08222e; color:#fff;">
+                    <th style="padding:12px; text-align:left; font-weight:600;">Квартира</th>
+                    <th style="padding:12px; text-align:left; font-weight:600;">Площадь</th>
+                    <th style="padding:12px; text-align:left; font-weight:600;">Цена</th>
+                    <th style="padding:12px; text-align:left; font-weight:600;">Время</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:11px 12px; border-bottom:1px solid #eef5f8;">Студия</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">до 28 м²</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; font-weight:700;">2 100 ₽</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">2 ч</td></tr>
+                <tr><td style="padding:11px 12px; border-bottom:1px solid #eef5f8;">1-комнатная</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">до 40 м²</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; font-weight:700;">3 200 ₽</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">3 ч</td></tr>
+                <tr><td style="padding:11px 12px; border-bottom:1px solid #eef5f8;">2-комнатная</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">до 65 м²</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; font-weight:700;">4 500 ₽</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">4 ч</td></tr>
+                <tr><td style="padding:11px 12px; border-bottom:1px solid #eef5f8;">3-комнатная</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">до 90 м²</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; font-weight:700;">6 100 ₽</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">5 ч</td></tr>
+                <tr><td style="padding:11px 12px; border-bottom:1px solid #eef5f8;">4-комнатная</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">до 120 м²</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; font-weight:700;">7 900 ₽</td><td style="padding:11px 12px; border-bottom:1px solid #eef5f8; color:#7c95a2;">6 ч</td></tr>
+                <tr><td style="padding:11px 12px;">5+ комнат</td><td style="padding:11px 12px; color:#7c95a2;">от 120 м²</td><td style="padding:11px 12px; font-weight:700;">9 900 ₽</td><td style="padding:11px 12px; color:#7c95a2;">от 7 ч</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ГАЛЕРЕЯ -->
+    <h2 class="section-title">Результаты работ</h2>
+    <div class="gallery">
+        <div>Кухня</div>
+        <div>Ванная</div>
+        <div>Окна</div>
+        <div>Ковёр</div>
+        <div>Диван</div>
+        <div>Прихожая</div>
+        <div>Балкон</div>
+        <div>Кабинет</div>
+    </div>
+
+    <!-- ОТЗЫВЫ -->
+    <h2 class="section-title">Отзывы</h2>
+    <div class="reviews">
+        <div class="review">Убрали идеально, даже пыль на шкафах протерли. Приехали вовремя.<div class="author">— Анна</div></div>
+        <div class="review">Сделали быстро и аккуратно. Буду заказывать ещё.<div class="author">— Игорь</div></div>
+        <div class="review">Используют экосредства, без запаха, но чистота стерильная.<div class="author">— Екатерина</div></div>
+    </div>
+
+    <!-- FAQ -->
+    <h2 class="section-title">Вопросы</h2>
+    <div class="faq" onclick="this.classList.toggle('open')"><div class="q">Сколько длится уборка?</div><div class="a">2–5 часов в зависимости от площади и загрязнения.</div></div>
+    <div class="faq" onclick="this.classList.toggle('open')"><div class="q">Нужен ли свой инвентарь?</div><div class="a">Нет, мы приезжаем со всем необходимым.</div></div>
+    <div class="faq" onclick="this.classList.toggle('open')"><div class="q">Есть ли гарантия?</div><div class="a">Да, если что-то не устроит — переделаем бесплатно в течение 24 часов.</div></div>
+    <div class="faq" onclick="this.classList.toggle('open')"><div class="q">Работаете в выходные?</div><div class="a">Да, 7 дней в неделю, включая праздники.</div></div>
+
+    <!-- ФОРМА -->
+    <h2 class="section-title">Оставить заявку</h2>
+    <div class="form">
+        <input type="text" placeholder="Ваше имя" id="nameInput">
+        <input type="tel" placeholder="Телефон" id="phoneInput">
+        <textarea placeholder="Какую уборку нужно? (необязательно)" id="commentInput"></textarea>
+        <button class="btn-submit" onclick="sendForm()">Получить 1000 ₽ на уборку →</button>
+    </div>
+
+    <div class="footer">
+        Чистота Про • <span id="year"></span>
+    </div>
+</div>
+
+<!-- ПЛАВАЮЩАЯ КНОПКА -->
+<button class="float-cta" onclick="scrollToForm()">Заказать со скидкой 1000 ₽</button>
+
+<script>
+    // ===== НАСТРОЙКИ =====
+    const BOT_TOKEN = '8581339969:AAFZZtXvYf5KLFnaGiYR4ffRwrgDuVnBBps';
+    const CHAT_ID = '@hdgvvq';
+
+    // ===== СЧЁТЧИКИ =====
+    function animate(id, target) {
+        let cur = 0;
+        const step = Math.ceil(target / 40);
+        const el = document.getElementById(id);
+        const t = setInterval(() => {
+            cur += step;
+            if (cur >= target) { cur = target; clearInterval(t); }
+            el.textContent = cur.toLocaleString();
+        }, 25);
+    }
+
+    // ===== ОТПРАВКА В TELEGRAM =====
+    function sendToTelegram(name, phone, comment) {
+        const text = `📩 *Новая заявка — ЧИСТОТА ПРО*\n\n👤 ${name}\n📞 ${phone}\n📝 ${comment || '—'}`;
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+        return fetch(url);
+    }
+
+    // ===== ФОРМА =====
+    function sendForm() {
+        const name = document.getElementById('nameInput').value.trim() || 'Не указано';
+        const phone = document.getElementById('phoneInput').value.trim();
+        const comment = document.getElementById('commentInput').value.trim();
+
+        if (!phone) {
+            alert('Укажите телефон для связи');
+            return;
+        }
+
+        const btn = document.querySelector('.btn-submit');
+        const old = btn.textContent;
+        btn.textContent = 'Отправка...';
+        btn.disabled = true;
+
+        sendToTelegram(name, phone, comment)
+            .then(() => {
+                alert('Заявка отправлена! Мы напишем вам в мессенджер.');
+                document.getElementById('nameInput').value = '';
+                document.getElementById('phoneInput').value = '';
+                document.getElementById('commentInput').value = '';
+            })
+            .catch(() => alert('Ошибка. Попробуйте ещё раз.'))
+            .finally(() => { btn.textContent = old; btn.disabled = false; });
+    }
+
+    // ===== ЗАКАЗ С КАРТОЧКИ =====
+    function order(type, price) {
+        sendToTelegram('Заказ с сайта', 'Не указан', `${type} — ${price} ₽`);
+        alert(`Заявка на «${type}» принята!\n\nМы свяжемся с вами в мессенджере.`);
+    }
+
+    // ===== СКРОЛЛ К ФОРМЕ =====
+    function scrollToForm() {
+        document.querySelector('.form').scrollIntoView({ behavior:'smooth', block:'center' });
+        setTimeout(() => document.getElementById('phoneInput').focus(), 400);
+    }
+
+    // ===== ЗАПУСК =====
+    window.onload = function() {
+        animate('c1', 527);
+        animate('c2', 843);
+        animate('c3', 18);
+        document.getElementById('year').textContent = new Date().getFullYear();
+    };
+</script>
+</body>
+</html>
